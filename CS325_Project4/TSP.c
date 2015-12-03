@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Charles Hardes. All rights reserved.
 //
 
+#include <stdlib.h>
+#include <math.h>
 #include "project4.h"
 #include "TSP.h"
-#include <math.h>
-#include <stdlib.h>
 
 //default ordering, fills the order attribute from 0 to n, in that exact order;
     //primarily used for testing

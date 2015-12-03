@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63426D6C1C0FA163002A4078 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 63426D6B1C0FA163002A4078 /* main.c */; };
+		63426D6C1C0FA163002A4078 /* project4.c in Sources */ = {isa = PBXBuildFile; fileRef = 63426D6B1C0FA163002A4078 /* project4.c */; };
+		63426D7F1C102C0E002A4078 /* TSP.c in Sources */ = {isa = PBXBuildFile; fileRef = 63426D7D1C102C0E002A4078 /* TSP.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,20 @@
 
 /* Begin PBXFileReference section */
 		63426D681C0FA163002A4078 /* CS325_Project4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CS325_Project4; sourceTree = BUILT_PRODUCTS_DIR; };
-		63426D6B1C0FA163002A4078 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		63426D6B1C0FA163002A4078 /* project4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = project4.c; sourceTree = "<group>"; };
+		63426D731C0FA70F002A4078 /* tsp-verifier.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = "tsp-verifier.py"; path = "TSP_Files-1/tsp-verifier.py"; sourceTree = "<group>"; };
+		63426D741C0FA70F002A4078 /* tsp_example_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tsp_example_1.txt; sourceTree = "<group>"; };
+		63426D751C0FA70F002A4078 /* tsp_example_1.txt.tour */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tsp_example_1.txt.tour; sourceTree = "<group>"; };
+		63426D761C0FA70F002A4078 /* tsp_example_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tsp_example_2.txt; sourceTree = "<group>"; };
+		63426D771C0FA70F002A4078 /* tsp_example_2.txt.tour */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tsp_example_2.txt.tour; sourceTree = "<group>"; };
+		63426D781C0FA70F002A4078 /* tsp_example_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tsp_example_3.txt; sourceTree = "<group>"; };
+		63426D791C0FA70F002A4078 /* tsp_example_3.txt.tour */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tsp_example_3.txt.tour; sourceTree = "<group>"; };
+		63426D7A1C0FA70F002A4078 /* TSPAllVisited.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = TSPAllVisited.py; path = "TSP_Files-1/TSPAllVisited.py"; sourceTree = "<group>"; };
+		63426D7B1C0FA70F002A4078 /* watch.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = watch.py; path = "TSP_Files-1/watch.py"; sourceTree = "<group>"; };
+		63426D7C1C0FC5AB002A4078 /* project4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = project4.h; sourceTree = "<group>"; };
+		63426D7D1C102C0E002A4078 /* TSP.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TSP.c; sourceTree = "<group>"; };
+		63426D7E1C102C0E002A4078 /* TSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSP.h; sourceTree = "<group>"; };
+		63BF03AE1C10FC2700CE68B3 /* tsp_example_1.txt.tour(1) */ = {isa = PBXFileReference; lastKnownFileType = text; path = "tsp_example_1.txt.tour(1)"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +71,30 @@
 		63426D6A1C0FA163002A4078 /* CS325_Project4 */ = {
 			isa = PBXGroup;
 			children = (
-				63426D6B1C0FA163002A4078 /* main.c */,
+				63426D731C0FA70F002A4078 /* tsp-verifier.py */,
+				63426D7A1C0FA70F002A4078 /* TSPAllVisited.py */,
+				63426D7B1C0FA70F002A4078 /* watch.py */,
+				63426D721C0FA70F002A4078 /* TSP_Files-1 */,
+				63426D6B1C0FA163002A4078 /* project4.c */,
+				63426D7D1C102C0E002A4078 /* TSP.c */,
+				63426D7E1C102C0E002A4078 /* TSP.h */,
+				63426D7C1C0FC5AB002A4078 /* project4.h */,
 			);
 			path = CS325_Project4;
+			sourceTree = "<group>";
+		};
+		63426D721C0FA70F002A4078 /* TSP_Files-1 */ = {
+			isa = PBXGroup;
+			children = (
+				63BF03AE1C10FC2700CE68B3 /* tsp_example_1.txt.tour(1) */,
+				63426D741C0FA70F002A4078 /* tsp_example_1.txt */,
+				63426D751C0FA70F002A4078 /* tsp_example_1.txt.tour */,
+				63426D761C0FA70F002A4078 /* tsp_example_2.txt */,
+				63426D771C0FA70F002A4078 /* tsp_example_2.txt.tour */,
+				63426D781C0FA70F002A4078 /* tsp_example_3.txt */,
+				63426D791C0FA70F002A4078 /* tsp_example_3.txt.tour */,
+			);
+			path = "TSP_Files-1";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +153,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63426D6C1C0FA163002A4078 /* main.c in Sources */,
+				63426D6C1C0FA163002A4078 /* project4.c in Sources */,
+				63426D7F1C102C0E002A4078 /* TSP.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +268,7 @@
 				63426D711C0FA163002A4078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
