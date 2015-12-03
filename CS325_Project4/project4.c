@@ -12,7 +12,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include "project4.h"
 #include "TSP.h"
 
 //FOR XCODE

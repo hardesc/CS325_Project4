@@ -10,6 +10,7 @@
 #define __CS325_Project4__TSP__
 
 #include <stdio.h>
+#include "project4.h"
 
 void numericallyOrder(set *s);
 int calculateDistance(set *s, int A, int B);
