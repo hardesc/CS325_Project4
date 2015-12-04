@@ -16,7 +16,7 @@
 #include "project4.h"
 
 //FOR XCODE
-#define PATH "/Users/charleshardes/Documents/XCode Workspace/CS325_Project4/CS325_Project4/TSP_Files-1/"
+#define PATH "/Users/charleshardes/Documents/XCode Workspace/CS325_Project4/CS325_Project4/"
  #define INPUT_FILENAME "tsp_example_1.txt"
 #define OUTPUT_FILENAME "tsp_example_3.txt.tour(1)"
 #define TEST_FILENAME "tsp_example_1.txt.tour"
@@ -41,18 +41,18 @@ int main(int argc, const char * argv[]) {
     }
     //For UNIX
     else {
-        if (argc != 3) {
-            perror("Usage: ./project4 <INPUT_FILE> <OUTPUT_FILE>\n");
+        if (argc != 2) {
+            perror("Usage: ./project4 <INPUT_FILE>\n");
             exit(1);
         }
 
         strcpy(path, getcwd(path, 200));
         strcpy(inputFileName, argv[1]);
-        strcpy(inputFileName, strcat(path, inputFileName));
-        strcpy(outputFileName, argv[2]);
-        strcpy(outputFileName, strcat(path, outputFileName));
+        //strcpy(inputFileName, strcat(path, inputFileName));
+        strcpy(outputFileName, strcat((char *)(argv[1]), ".tour"));
+        //strcpy(outputFileName, strcat(path, outputFileName));
         strcpy(testFileName, TEST_FILENAME);
-        strcpy(testFileName, strcat(path, testFileName));
+        //strcpy(testFileName, strcat(path, testFileName));
         printf("cwd: %s\ninput file: %s\noutput file: %s\n", path, inputFileName, outputFileName);
     }
     
@@ -63,8 +63,8 @@ int main(int argc, const char * argv[]) {
     fillSet(startSet, count, inputFileName);
     //testPrintSet(startSet);
 
-    //numericallyOrder(startSet);
-    setOrderByOutputFile(startSet, testFileName);
+    numericallyOrder(startSet);
+    //setOrderByOutputFile(startSet, testFileName);
     setAllDistances(startSet);
     filePrintResults(startSet, outputFileName);
 
@@ -92,6 +92,8 @@ int getCityCount(const char *inputFileName) {
     
     while (fgets(string, 25, ifp) != NULL) {count++;}
     if (!feof(ifp)) {perror("fgets");}
+    
+    fclose(ifp);
     
     return count;
 }
