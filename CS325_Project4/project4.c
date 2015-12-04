@@ -47,7 +47,7 @@ int main(int argc, const char * argv[]) {
         if (argc != 3) {
             perror("Usage: ./project4 <INPUT_FILE> <OUTPUT_FILE>\n");
         }
-        printf("argv[1]: %s\targv[2]: %s\n", argv[1], argv[2]);
+        printf("cwd: %s\nargv[1]: %s\targv[2]: %s\n", getcwd(testFileName, 200), argv[1], argv[2]);
         strcpy(inputFileName, argv[1]);
         strcpy(inputFileName, argv[2]);
     }
