@@ -10,6 +10,7 @@
 		63426D6C1C0FA163002A4078 /* project4.c in Sources */ = {isa = PBXBuildFile; fileRef = 63426D6B1C0FA163002A4078 /* project4.c */; };
 		63426D7F1C102C0E002A4078 /* TSP.c in Sources */ = {isa = PBXBuildFile; fileRef = 63426D7D1C102C0E002A4078 /* TSP.c */; };
 		63BF03B21C1160E200CE68B3 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = 63BF03AF1C1160E200CE68B3 /* makefile */; };
+		63BF03B41C1166A300CE68B3 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = 63BF03B31C1166A300CE68B3 /* makefile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,7 @@
 		63426D7D1C102C0E002A4078 /* TSP.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TSP.c; sourceTree = "<group>"; };
 		63426D7E1C102C0E002A4078 /* TSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSP.h; sourceTree = "<group>"; };
 		63BF03AF1C1160E200CE68B3 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		63BF03B31C1166A300CE68B3 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		63426D6A1C0FA163002A4078 /* CS325_Project4 */ = {
 			isa = PBXGroup;
 			children = (
+				63BF03B31C1166A300CE68B3 /* makefile */,
 				63426D741C0FA70F002A4078 /* tsp_example_1.txt */,
 				63426D751C0FA70F002A4078 /* tsp_example_1.txt.tour */,
 				63426D761C0FA70F002A4078 /* tsp_example_2.txt */,
@@ -148,6 +151,7 @@
 			files = (
 				63426D6C1C0FA163002A4078 /* project4.c in Sources */,
 				63426D7F1C102C0E002A4078 /* TSP.c in Sources */,
+				63BF03B41C1166A300CE68B3 /* makefile in Sources */,
 				63BF03B21C1160E200CE68B3 /* makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
