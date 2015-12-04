@@ -30,26 +30,30 @@ int main(int argc, const char * argv[]) {
     
     //For XCode writing/testing
     if (_POSIX_VERSION ==  200112) {
+        
+        strcpy(path, PATH);
         strcpy(inputFileName, INPUT_FILENAME);
-        strcpy(path, PATH);
         strcpy(inputFileName, strcat(path, inputFileName));
-        
         strcpy(outputFileName, OUTPUT_FILENAME);
-        strcpy(path, PATH);
         strcpy(outputFileName, strcat(path, outputFileName));
-        
         strcpy(testFileName, TEST_FILENAME);
-        strcpy(path, PATH);
         strcpy(testFileName, strcat(path, testFileName));
     }
     //For UNIX
     else {
         if (argc != 3) {
             perror("Usage: ./project4 <INPUT_FILE> <OUTPUT_FILE>\n");
+            exit(1);
         }
-        printf("cwd: %s\nargv[1]: %s\targv[2]: %s\n", getcwd(testFileName, 200), argv[1], argv[2]);
+
+        strcpy(path, getcwd(path, 200));
         strcpy(inputFileName, argv[1]);
-        strcpy(inputFileName, argv[2]);
+        strcpy(inputFileName, strcat(path, inputFileName));
+        strcpy(outputFileName, argv[2]);
+        strcpy(outputFileName, strcat(path, outputFileName));
+        strcpy(testFileName, TEST_FILENAME);
+        strcpy(testFileName, strcat(path, testFileName));
+        printf("cwd: %s\ninput file: %s\noutput file: %s\n", path, inputFileName, outputFileName);
     }
     
     count = getCityCount(inputFileName);
@@ -81,7 +85,10 @@ int getCityCount(const char *inputFileName) {
     char string[25];
     int count = 0;
     FILE *ifp;
-    if ((ifp = fopen(inputFileName, "r")) == NULL) {perror("input file");}
+    if ((ifp = fopen(inputFileName, "r")) == NULL) {
+        perror("input file");
+        exit(1);
+    }
     
     while (fgets(string, 25, ifp) != NULL) {count++;}
     if (!feof(ifp)) {perror("fgets");}
