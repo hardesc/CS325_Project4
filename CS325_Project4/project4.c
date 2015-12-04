@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "TSP.h"
+#include "project4.h"
 
 //FOR XCODE
 #define PATH "/Users/charleshardes/Documents/XCode Workspace/CS325_Project4/CS325_Project4/TSP_Files-1/"
@@ -46,6 +47,7 @@ int main(int argc, const char * argv[]) {
         if (argc != 3) {
             perror("Usage: ./project4 <INPUT_FILE> <OUTPUT_FILE>\n");
         }
+        printf("argv[1]: %s\targv[2]: %s\n", argv[1], argv[2]);
         strcpy(inputFileName, argv[1]);
         strcpy(inputFileName, argv[2]);
     }

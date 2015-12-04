@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Charles Hardes. All rights reserved.
 //
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "project4.h"
