@@ -2,8 +2,7 @@
 //  TSP.c
 //  CS325_Project4
 //
-//  Created by Charles Hardes on 12/2/15.
-//  Copyright (c) 2015 Charles Hardes. All rights reserved.
+//  Created by Oregon State University Fall 2015 CS325 Group 16 on 12/2/15.
 //
 
 #include <stdio.h>
@@ -11,6 +10,44 @@
 #include <math.h>
 #include "project4.h"
 #include "TSP.h"
+
+
+/*This is where the work of solving the TSP algorithm is done. A struct set of n struct cities has
+    been created, read in from the designated input file. See the README file for instructions on
+    how to manipulate the struct set and see "project4.h" for the definition of struct set and
+    struct city.
+*/
+void theAlgorithm(set *s) {
+    
+    //Below is a default ordering function for testing. It simply orders the cities from 0 to n.
+        //Our real algorithm must set the order of the struct cities in the struct set, then call
+        //setAllDistances(s) to make the final distance calculations.
+    numericallyOrder(s);//comment this out when you have a working TSP solution
+
+    /*
+    
+    *****************************************************************************
+    
+    ------------------------TSP ALGORITHM GOES HERE------------------------------
+    
+    *****************************************************************************
+     
+     
+     */
+    
+    //this gets called once the order is completely set and we want to get the total distance
+    calculateAllDistances(s);
+    
+
+    
+}
+
+/************************************************************************************
+
+                            HELPER FUNCTIONS
+
+ ************************************************************************************
+*/
 
 //default ordering, fills the order attribute from 0 to n, in that exact order;
     //primarily used for testing
@@ -22,15 +59,18 @@ void numericallyOrder(set *s) {
     }
 }
 
-//used to check calculations, in the case of the output test file: tsp_example_1.txt.tour
+//Main post-condition: the cityOrder attribute is set according to the ordering of the output file
+    //Only used to check calculations in the case of the output test file: tsp_example_1.txt.tour
+    //in which the order was set by some unkown program and only way to check that we get the same
+    //total distance caluclation is to take in the ordering by the output file ordering.
     //the output has reordered the cities by some unknown method. This function can be
-    //called to verify that the this program outputs the same results as that file.
-    //if this function is called on an output file other than example_1, the results
+    //called to verify that this program outputs the same results as that file.
+    //if this function is called on an output file other than example_1, the order
     //should be the exact same as the default numeriallyOrder() function.
-void setOrderByOutputFile(set *s, const char *testFileName) {
+void setOrderByOutputFile(set *s) {
     
     FILE *ofp;
-    if ((ofp = fopen(testFileName, "r")) == NULL) {perror("input file");}
+    if ((ofp = fopen(s->testFilename, "r")) == NULL) {perror("input file");}
     char c, index[6];
     int i, j;
     
@@ -54,7 +94,8 @@ void setOrderByOutputFile(set *s, const char *testFileName) {
     fclose(ofp);
 }
 
-//calculates the distance between any two points, A and B
+//calculates the distance between any two points (cities), A and B
+    //ints A and B  are used as indexes to access the array of cities in set s
 int calculateDistance(set *s, int A, int B) {
     
     int Ax, Ay, Bx, By;
@@ -74,9 +115,34 @@ int calculateDistance(set *s, int A, int B) {
     return (int)nearbyintf(root);
 }
 
-//Precondition: Order must first be set
-//compute and set all distances according to order set.
-int setAllDistances(set *s) {
+//simplify the process of setting the distance of a pair of cities A and B
+    //sets a distance in the distancesTable 2d array
+void _setDistance(set *s, int A, int B, int distance) {
+    
+    if (s->distancesTable[(A * s->n) + B] == distance){return;}
+    else s->distancesTable[(A * s->n) + B] = distance;
+    
+    //set reciprocal value (A to B = B to A)
+    _setDistance(s, B, A, distance);
+}
+
+//simplify the process of getting the distance that's already been calculated between two points
+    //returns 0 if not yet calculated/ set, or if the two ints passed are equal (same city)
+int _getDistance(set *s, int A, int B) {
+    
+    return s->distancesTable[(A * s->n) + B];
+}
+
+/*Given that the order array is completely filled and set, this function will calculate each
+    distance in the order given, filling the distances table with each result, and returns
+    the total distance as well as fills the toatlDistance attribute of the struct set
+
+    Preconditions:
+        -struct set s has been created and appropriately filled
+        -Order must first be set with every element in the cityOrder array filled
+    compute and set all distances according to order set.
+ */
+int calculateAllDistances(set *s) {
     
     int i, total, distance, A, B, count;
     total = 0;
@@ -108,28 +174,3 @@ int setAllDistances(set *s) {
     return total;
 }
 
-//Prints the results to screen, for testing purposes
-void testPrintResults(set *s) {
-    
-    int i;
-    
-    printf("%d\n", s->totalDistance);
-    for (i = 0; i < s->n; i++) {
-        printf("%d\n", s->cityOrder[i]);
-    }
-}
-
-//Prints final results to file
-void filePrintResults(set *s, char *fileOut) {
-    
-    int i;
-    FILE *ofp;
-    
-    if ((ofp = fopen(fileOut, "w")) == NULL) {perror("output file");}
-    
-    fprintf(ofp, "%d\n", s->totalDistance);
-    for (i = 0; i < s->n; i++) {
-        fprintf(ofp, "%d\n", s->cityOrder[i]);
-    }
-    fclose(ofp);
-}
