@@ -23,7 +23,7 @@ struct set {
     struct city **city;//the array of all struct city's in the order they were read from input file
     int totalDistance;//initialized to 0, can be set once the array cityOrder has been filled
     int *cityOrder;//this is where the actual ordering of the struct cities occurs
-    int *distancesTable;//initialized to all zeroes, this is a 2d array of distances between cities
+    int **distancesTable;//initialized to all zeroes, this is a 2d array of distances between cities
     char inputFilename[200];//input file read in from command line
     char outputFilename[200];//output file generated from input file + ".tour"
     char testFilename[200];//used in testing

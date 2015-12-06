@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <limits.h>
 #include "project4.h"
 #include "TSP.h"
 
@@ -18,25 +19,67 @@
     struct city.
 */
 void theAlgorithm(set *s) {
-    
+    int i, j, k, min_neighbor, column, row;
+
+
     //Below is a default ordering function for testing. It simply orders the cities from 0 to n.
         //Our real algorithm must set the order of the struct cities in the struct set, then call
         //setAllDistances(s) to make the final distance calculations.
-    numericallyOrder(s);//comment this out when you have a working TSP solution
+    //numericallyOrder(s);//comment this out when you have a working TSP solution
 
-    /*
-    
-    *****************************************************************************
-    
-    ------------------------TSP ALGORITHM GOES HERE------------------------------
-    
-    *****************************************************************************
-     
-     
-     */
+    //this nested loop fills the 2d array distancesTable[][]
+    for(i=0;i<s->n;i++)
+    {
+        for(j=i;j<s->n;j++)
+        {
+            _setDistance(s, i, j, calculateDistance(s, i, j));
+//printf("%d\t", s->distancesTable[i][j]);
+        }
+//printf("\n");
+    }
+
+    //this loop makes all the costs for city 0 negative to show it has already been visited
+    for(i=0;i<s->n;i++)
+        s->distancesTable[i][0] = s->distancesTable[i][0] * -1;
+
+    s->cityOrder[0] = 0;
+    row = 0;
+    //this nested loop is the algorithm
+    for(i=0;i<s->n;i++)
+    {
+        min_neighbor = INT_MAX;
+        for(j=0;j<s->n;j++)
+        {
+            if(s->distancesTable[row][j] < min_neighbor && s->distancesTable[row][j] > 0)
+            {
+                min_neighbor = s->distancesTable[row][j];
+                column = j;
+//printf("made it here %d\n",i);
+            }
+        }
+        row = column;
+        //this loop sets makes all the other cities in the column negative since the city has now been visited
+        for(k=0;k<s->n;k++)
+        {
+            s->distancesTable[k][column] = s->distancesTable[k][column] * -1;
+        }
+        if(i == s->n-1)
+        {
+            s->totalDistance = s->totalDistance + s->distancesTable[row][0] * -1;
+        }
+        else
+        {
+            s->cityOrder[i+1] = s->city[column]->number;
+            s->totalDistance = s->totalDistance + min_neighbor;
+//printf("%d\n", s->totalDistance);
+        }
+//printf("total distance %d: %d minimum neighbor: %d = ", i, s->totalDistance, min_neighbor);
+//printf("current city: %d\n", s->cityOrder[i]);
+    }
+//printf("total distance: %d\n", s->totalDistance);
     
     //this gets called once the order is completely set and we want to get the total distance
-    calculateAllDistances(s);
+    //calculateAllDistances(s);
     
 
     
@@ -87,9 +130,8 @@ void setOrderByOutputFile(set *s) {
         index[j] = '\0';
         s->cityOrder[i] = atoi(index);
     }
-    
-    //get each number and put it in the order array
 
+    //get each number and put it in the order array
     
     fclose(ofp);
 }
@@ -119,8 +161,8 @@ int calculateDistance(set *s, int A, int B) {
     //sets a distance in the distancesTable 2d array
 void _setDistance(set *s, int A, int B, int distance) {
     
-    if (s->distancesTable[(A * s->n) + B] == distance){return;}
-    else s->distancesTable[(A * s->n) + B] = distance;
+    if (s->distancesTable[A][B] == distance){return;}
+    else s->distancesTable[A][B] = distance;
     
     //set reciprocal value (A to B = B to A)
     _setDistance(s, B, A, distance);
@@ -130,7 +172,7 @@ void _setDistance(set *s, int A, int B, int distance) {
     //returns 0 if not yet calculated/ set, or if the two ints passed are equal (same city)
 int _getDistance(set *s, int A, int B) {
     
-    return s->distancesTable[(A * s->n) + B];
+    return s->distancesTable[A][B];
 }
 
 /*Given that the order array is completely filled and set, this function will calculate each

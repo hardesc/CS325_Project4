@@ -181,7 +181,9 @@ void _initSet(set *s, int n) {
     s->totalDistance = 0;
     s->city = (city **)malloc(n * sizeof(city *));
     s->cityOrder = (int *)malloc(n * sizeof(int));
-    s->distancesTable = (int *)malloc(n * n * sizeof(int));
+    s->distancesTable = (int **)malloc(s->n * sizeof(int*));
+    for (i=0;i<s->n;i++)
+        s->distancesTable[i] = (int*)malloc(s->n * sizeof(int));
     
     for (i = 0; i < n; i++) {
         
@@ -204,6 +206,8 @@ void freeSet(set *s) {
     }
     free(s->city);
     free(s->cityOrder);
+    for(i=0;i<s->n;i++)
+        free(s->distancesTable[i]);
     free(s->distancesTable);
     free(s);
 }
